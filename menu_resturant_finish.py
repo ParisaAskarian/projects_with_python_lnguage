@@ -250,10 +250,10 @@ class customer:
                 label_prise.grid(row=0,column=2)
 
                 if line[2] == 'available':
-                    butt_add = tk.Button(frame,text="add to basket",bg='green',command=lambda index = int(line[0]),l = lines,indx = i:self.add_to_basket(index,l,indx))
+                    butt_add = tk.Button(frame,text="add to basket",bg='green',command=lambda index = int(line[0]),l = lines,indx = i-1:self.add_to_basket(index,l,indx))
                     butt_add.grid(row=0,column=3)
 
-                    butt_remove = tk.Button(frame,text="remove",bg='orangeRed1',command=lambda index = int(line[0]),l = lines,indx = i:self.remove_from_basket(index,l,indx))
+                    butt_remove = tk.Button(frame,text="remove",bg='orangeRed1',command=lambda index = int(line[0]),l = lines,indx = i-1:self.remove_from_basket(index,l,indx))
                     butt_remove.grid(row=0,column=4)
 
                     label_count = tk.Label(frame,text=0)
@@ -345,15 +345,13 @@ def find_user():
     global frame
     window = tk.Tk()
     window.resizable(width=False, height=False)
-    window.geometry('300x300')
-    window.rowconfigure(0, minsize=50, weight=1)
-    window.columnconfigure(0, minsize=50, weight=1)
-    #frame=tk.Frame(window,bg='oliveDrab1')
-    #frame.grid(row=0,column=0,sticky="nsew")
+    
+    frame=tk.Frame(window,bg='oliveDrab1')
+    frame.grid(row=0,column=0,sticky="nsew")
 
-    label = tk.Label(window,text="chose:(customer or seller)",bg='oliveDrab1')
-    button_customer = tk.Button(window,text="customer",command = lambda win = window: accept_pass(win,"customer"),bg='pink')
-    button_seller = tk.Button(window,text="seller",command=lambda win = window:accept_pass(win,"seller"),bg='Pink')
+    label = tk.Label(frame,text="chose:(customer or seller)",bg='oliveDrab1')
+    button_customer = tk.Button(frame,text="customer",command = lambda win = window: accept_pass(win,"customer"),bg='pink')
+    button_seller = tk.Button(frame,text="seller",command=lambda win = window:accept_pass(win,"seller"),bg='Pink')
    
     label.grid(row=0,column=0)
     button_customer.grid(row=50,column=0)
@@ -393,4 +391,3 @@ def check_pass(window):
 
         
 find_user()
-
